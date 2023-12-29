@@ -1,1 +1,1 @@
-# terraform-templates-aws-rds
+# terraform-blueprints
