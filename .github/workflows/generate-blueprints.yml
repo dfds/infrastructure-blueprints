@@ -19,5 +19,18 @@ jobs:
         run: |
           # chmod +x ./aws-rds/blueprints/scripts/generate-blueprints.sh
           # ./aws-rds/blueprints/scripts/generate-blueprints.sh
+          # ./aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding/generate_blueprints.sh
+
+          # echo "list files in /aws-rds/blueprints/"
+          # ls /aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding
+          echo "Running generate_blueprints.sh"
           ./aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding/generate_blueprints.sh
+          echo "Finished running generate_blueprints.sh"
+          ls -a
+          cp -a /aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding/auto-generated/. /aws-rds/blueprints/easycreate
+
+          ls /aws-rds/blueprints/easycreate
+          # cd ../../..
+          #rm -rf aws-modules-rds
+
         shell: bash
