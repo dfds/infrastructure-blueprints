@@ -1,7 +1,7 @@
 # This will load the scaffolding scripts from aws-modules-rds and generate the blueprints
 git clone --branch feature/scaffolding_tools https://github.com/dfds/aws-modules-rds.git
 
-cd aws-modules-rds/tools/scaffolding
+cd aws-modules-rds
 
 
 ll -a
