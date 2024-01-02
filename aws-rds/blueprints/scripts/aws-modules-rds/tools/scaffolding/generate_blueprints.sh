@@ -2,7 +2,12 @@
 SOURCE_MODULE_PATH="../../"
 OUTPUT_FILE="$PWD/temp/doc.json"
 
-terraform-docs json --show "all" $SOURCE_MODULE_PATH --output-file $OUTPUT_FILE
+# Install terraform-docs
+uname=$(uname)
+curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.17.0/terraform-docs-v0.17.0-$uname-amd64.tar.gz
+tar -xzf terraform-docs.tar.gz
+chmod +x terraform-docs
+terraform-docs --version
 
 mkdir -p temp
 
