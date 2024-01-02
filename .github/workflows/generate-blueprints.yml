@@ -19,6 +19,7 @@ jobs:
           docker build -t scaffold:latest .
         shell: bash
 
+      # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
           input=$(pwd)/aws-rds/blueprints/scripts/aws-modules-rds/
@@ -27,4 +28,7 @@ jobs:
 
           docker run -v $input:/input -v $output:/output scaffold:latest
           ls -a auto-generated
+
+          ls -a auto-generated/terraform
+          ls -a auto-generated/docker
         shell: bash
