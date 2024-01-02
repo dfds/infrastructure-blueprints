@@ -25,19 +25,10 @@ jobs:
           input=$(pwd)/aws-rds/blueprints/scripts/aws-modules-rds/
           output=$(pwd)/auto-generated/
           mkdir -p $output
-
           docker run -v $input:/input -v $output:/output scaffold:latest
-          ls -a auto-generated
-
-          ls -a auto-generated/terraform
-          ls -a auto-generated/docker
-
-          dest=$(pwd)/aws-rds/blueprints/easycreate/
+          dest=$(pwd)/aws-rds/blueprints/basic/
+          mkdir -p $dest
           cp -r $output $dest
-
-
-          echo "ls -a dest"
-          ls -a $dest
         shell: bash
 
       - name: setup git config
@@ -50,6 +41,6 @@ jobs:
         run: |
           git status
           # Stage the file, commit and push
-          git add $(pwd)/aws-rds/blueprints/easycreate/
+          git add $(pwd)/aws-rds/blueprints/basic/
           git commit -m "update blueprints for RDS module"
           git push
