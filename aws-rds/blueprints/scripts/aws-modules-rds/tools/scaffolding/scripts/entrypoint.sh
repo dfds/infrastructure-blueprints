@@ -27,8 +27,8 @@ mkdir -p $DOCKER_OUTPUT_FOLDERS
 
 if [ -z "$(ls -A $SOURCE_MODULE_PATH)" ]; then
    echo "Empty $SOURCE_MODULE_PATH"
-exit 1
-
+   exit 1
+fi
 # TODO: CHECK FOR output folder mounted
 
 
@@ -48,5 +48,3 @@ python3 $SCRIPTS_PATH/generate_docker.py $DOCKER_COMPOSE_TEMPLATE $DOCKER_COMPOS
 
 # mkdir -p auto-generated/pipeline
 # TODO: generate pipeline
-
-# rm -rf temp
