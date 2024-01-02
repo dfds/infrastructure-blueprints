@@ -5,7 +5,7 @@ ls -a
 
 echo "list files in /aws-rds/"
 
-ls /aws-rds/
+ls -a aws-rds
 
 echo "list files in /aws-rds/blueprints/"
 ls /aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding
