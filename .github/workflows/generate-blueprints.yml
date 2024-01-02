@@ -23,11 +23,11 @@ jobs:
       #     echo "aws-modules-rds/tools"
       #     ls -a aws-rds/blueprints/scripts/aws-modules-rds/tools
       #   shell: bash
-      # - name: build docker image
-      #   working-directory: aws-rds/blueprints/scripts/aws-modules-rds/tools
-      #   run: |
-      #     docker build -t scaffold:latest .
-      #   shell: bash
+      - name: build docker image
+        working-directory: aws-rds/blueprints/scripts/aws-modules-rds/tools
+        run: |
+          docker build -t scaffold:latest .
+        shell: bash
 
       - name: Run script
         run: |
