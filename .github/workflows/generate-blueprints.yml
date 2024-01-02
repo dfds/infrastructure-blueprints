@@ -49,7 +49,7 @@ jobs:
       - name: commit
         run: |
           git status
-      #     # Stage the file, commit and push
-      #     git add auto-generated
-      #     git commit -m "update blueprints for RDS module"
-      #     git push
+          # Stage the file, commit and push
+          git add $(pwd)/aws-rds/blueprints/easycreate/
+          git commit -m "update blueprints for RDS module"
+          git push
