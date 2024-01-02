@@ -19,4 +19,5 @@ jobs:
         working-directory: aws-rds/blueprints/scripts/aws-modules-rds/tools/scaffolding
         run: |
           ls -a
+          ./generate-blueprints.sh
         shell: bash
