@@ -16,5 +16,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Run script
-        working-directory: /aws-rds/blueprints/scripts
-        run: generate-blueprints.sh
+        run: |
+          chmod +x ./aws-rds/blueprints/scripts/generate-blueprints.sh
+          ./aws-rds/blueprints/scripts/generate-blueprints.sh
+        shell: bash
