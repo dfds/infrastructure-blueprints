@@ -15,6 +15,14 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+      - name: Check folders
+        run: |
+          pwd
+          echo "aws-modules-rds"
+          ls -a aws-rds/blueprints/scripts/aws-modules-rds/
+          echo "aws-modules-rds/tools"
+          ls -a aws-rds/blueprints/scripts/aws-modules-rds/tools
+        shell: bash
       - name: build docker image
         working-directory: aws-rds/blueprints/scripts/aws-modules-rds/tools
         run: |
@@ -23,6 +31,6 @@ jobs:
       - name: Run script
         run: |
           mkdir -p auto-generated
-          docker run -v /aws-rds/blueprints/scripts/aws-modules-rds/:/input -v /auto-generated:/output scaffold:latest
+          docker run -v aws-rds/blueprints/scripts/aws-modules-rds/:/input -v /auto-generated:/output scaffold:latest
           ls -a auto-generated
         shell: bash
