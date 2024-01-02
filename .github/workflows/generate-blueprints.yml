@@ -14,7 +14,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: aws-rds/blueprints/scripts/aws-modules-rds/tools
+        working-directory: aws-rds/blueprints/aws-modules-rds/tools
         run: |
           docker build -t scaffold:latest .
         shell: bash
@@ -22,7 +22,7 @@ jobs:
       # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
-          input=$(pwd)/aws-rds/blueprints/scripts/aws-modules-rds/
+          input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
           output=$(pwd)/auto-generated/
           mkdir -p $output
           docker run -v $input:/input -v $output:/output scaffold:latest
