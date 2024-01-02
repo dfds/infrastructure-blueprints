@@ -33,10 +33,10 @@ jobs:
         run: |
           mkdir -p auto-generated
           input=$(pwd)/aws-rds/blueprints/scripts/aws-modules-rds/
-          output=$(pwd)/auto-generated
+          output=$(pwd)/auto-generated/
 
           echo "input: $input"
           echo "output: $output"
-          # docker run -v $(pwd)/aws-rds/blueprints/scripts/aws-modules-rds/:/input -v $(pwd)/auto-generated:/output scaffold:latest
+          docker run -v $input:/input -v $output:/output scaffold:latest
           ls -a auto-generated
         shell: bash
