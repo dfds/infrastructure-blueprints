@@ -33,7 +33,7 @@ jobs:
           ls -a auto-generated/docker
 
           dest=$(pwd)/aws-rds/blueprints/easycreate/
-          cp -r $output* $dest*
+          cp -r $output $dest
 
 
           echo "ls -a dest"
