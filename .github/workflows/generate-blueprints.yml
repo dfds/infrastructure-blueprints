@@ -28,7 +28,7 @@ jobs:
           docker run -v $input:/input -v $output:/output scaffold:latest
           dest=$(pwd)/aws-rds/blueprints/basic/
           mkdir -p $dest
-          cp -r $output $dest
+          cp -a $output. $dest
         shell: bash
 
       - name: setup git config
