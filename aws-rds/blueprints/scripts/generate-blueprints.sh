@@ -2,7 +2,7 @@
 # git clone --branch feature/scaffolding_tools https://github.com/dfds/aws-modules-rds.git # TODO: Checkout repo or download zip of the latest release
 echo "Cloned aws-modules-rds"
 ls -a
-cd aws-modules-rds/tools/scaffolding
+cd aws-rds/aws-modules-rds/tools/scaffolding
 echo "Running generate_blueprints.sh"
 ls -a
 
