@@ -11,15 +11,15 @@ jobs:
   Generate-files:
     runs-on: ubuntu-latest
     env:
-      DEST_DIR: ${{runner.workspace}}/aws-rds/blueprints/basic/
+      DEST_DIR: aws-rds/blueprints/basic/
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Check
         run: |
-          # printenv
           echo "===================="
-          echo $DEST_DIR
+          echo $(pwd)/$DEST_DIR
+          echo "===================="
         shell: bash
       # - name: build docker image
       #   working-directory: aws-rds/blueprints/aws-modules-rds/tools
@@ -31,20 +31,12 @@ jobs:
       # - name: Run script
       #   run: |
       #     input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
-      #     output=$DEST_DIR
+      #     output=$(pwd)/$DEST_DIR
       #     if [ -d $output ]; then
       #         rm -rf $output
       #     fi
       #     mkdir -p $output
-      #     # output=$(pwd)/auto-generated/
-      #     # mkdir -p $output
       #     docker run -v $input:/input -v $output:/output scaffold:latest
-      #     # dest=$(pwd)/aws-rds/basic/
-      #     # if [ -d $dest ]; then
-      #     #     rm -rf $dest
-      #     # fi
-      #     # mkdir -p $dest
-      #     # cp -a $output. $dest
       #   shell: bash
 
       # - name: setup git config
@@ -57,6 +49,6 @@ jobs:
       #   run: |
       #     git status
       #     # Stage the file, commit and push
-      #     git add $(pwd)/aws-rds/blueprints/basic/
+      #     git add $(pwd)/$DEST_DIR
       #     git commit -m "update blueprints for RDS module"
       #     git push
