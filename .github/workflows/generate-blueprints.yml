@@ -10,9 +10,15 @@ defaults:
 jobs:
   Generate-files:
     runs-on: ubuntu-latest
+    env:
+      DEST_DIR: ${{env.GITHUB_WORKSPACE}}/aws-rds/blueprints/basic/
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+      - name: Check
+        run: |
+          echo $DEST_DIR
+        shell: bash
       - name: build docker image
         working-directory: aws-rds/blueprints/aws-modules-rds/tools
         run: |
@@ -23,7 +29,7 @@ jobs:
       - name: Run script
         run: |
           input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
-          output=$(pwd)/aws-rds/basic/
+          output=$DEST_DIR
           if [ -d $output ]; then
               rm -rf $output
           fi
@@ -45,10 +51,10 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
-      - name: commit
-        run: |
-          git status
-          # Stage the file, commit and push
-          git add $(pwd)/aws-rds/blueprints/basic/
-          git commit -m "update blueprints for RDS module"
-          git push
+      # - name: commit
+      #   run: |
+      #     git status
+      #     # Stage the file, commit and push
+      #     git add $(pwd)/aws-rds/blueprints/basic/
+      #     git commit -m "update blueprints for RDS module"
+      #     git push
