@@ -19,37 +19,37 @@ jobs:
         run: |
           echo $DEST_DIR
         shell: bash
-      - name: build docker image
-        working-directory: aws-rds/blueprints/aws-modules-rds/tools
-        run: |
-          docker build -t scaffold:latest .
-        shell: bash
+      # - name: build docker image
+      #   working-directory: aws-rds/blueprints/aws-modules-rds/tools
+      #   run: |
+      #     docker build -t scaffold:latest .
+      #   shell: bash
 
-      # TODO: Download the latest version of the Core module
-      - name: Run script
-        run: |
-          input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
-          output=$DEST_DIR
-          if [ -d $output ]; then
-              rm -rf $output
-          fi
-          mkdir -p $output
-          # output=$(pwd)/auto-generated/
-          # mkdir -p $output
-          docker run -v $input:/input -v $output:/output scaffold:latest
-          # dest=$(pwd)/aws-rds/basic/
-          # if [ -d $dest ]; then
-          #     rm -rf $dest
-          # fi
-          # mkdir -p $dest
-          # cp -a $output. $dest
-        shell: bash
+      # # TODO: Download the latest version of the Core module
+      # - name: Run script
+      #   run: |
+      #     input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
+      #     output=$DEST_DIR
+      #     if [ -d $output ]; then
+      #         rm -rf $output
+      #     fi
+      #     mkdir -p $output
+      #     # output=$(pwd)/auto-generated/
+      #     # mkdir -p $output
+      #     docker run -v $input:/input -v $output:/output scaffold:latest
+      #     # dest=$(pwd)/aws-rds/basic/
+      #     # if [ -d $dest ]; then
+      #     #     rm -rf $dest
+      #     # fi
+      #     # mkdir -p $dest
+      #     # cp -a $output. $dest
+      #   shell: bash
 
-      - name: setup git config
-        run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+      # - name: setup git config
+      #   run: |
+      #     # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
 
       # - name: commit
       #   run: |
