@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Check
         run: |
+          printenv
+          echo "===================="
           echo $DEST_DIR
         shell: bash
       # - name: build docker image
