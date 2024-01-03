@@ -11,14 +11,14 @@ jobs:
   Generate-files:
     runs-on: ubuntu-latest
     env:
-      DEST_DIR: aws-rds/blueprints/basic/
+      DEST_DIR: ${{github.workspace}}/aws-rds/blueprints/basic/
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Check
         run: |
           echo "===================="
-          echo $(pwd)/$DEST_DIR
+          echo $DEST_DIR
           echo "===================="
         shell: bash
       # - name: build docker image
