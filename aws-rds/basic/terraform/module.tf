@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "example-state-bucket"
+    bucket         = "<your_bucket_name>-state-bucket"
     encrypt        = true
-    key            = "example/terraform.tfstate"
+    key            = "<your-folder-name>/terraform.tfstate" # This is the path to the state file inside the bucket. You can change it to whatever you want.
     region         = "eu-central-1"
     dynamodb_table = "terraform-locks"
   }
@@ -14,8 +14,8 @@ provider "aws" {
 }
 
 
-module "db_instance_example" {
-  source = "git::https://github.com/dfds/aws-modules-rds.git"
+module "db_instance" {
+  source = "git::https://github.com/dfds/aws-modules-rds.git?ref=<release_number>"
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
@@ -34,8 +34,19 @@ module "db_instance_example" {
 
   #     Specify the name of the RDS instance to create.
   #     Valid Values: .
-  #     Notes: .
+  #     Notes: This
   identifier = "example"
+
+  #     [Experiemental Feature] Specify whether or not to deploy the instance as multi-az database cluster.
+  #     Valid Values: .
+  #     Notes:
+  #     - This feature is currently in beta and is subject to change.
+  #     - It creates a DB cluster with a primary DB instance and two readable standby DB instances,
+  #     - Each DB instance in a different Availability Zone (AZ).
+  #     - Provides high availability, data redundancy and increases capacity to serve read workloads
+  #     - Proxy is not supported for cluster instances.
+  #     - For smaller workloads we recommend considering using a single instance instead of a cluster.
+  is_cluster = false
 
   #     Specify whether or not to enable access from Kubernetes pods.
   #     Valid Values: .
@@ -48,6 +59,14 @@ module "db_instance_example" {
   #     Valid Values: .
   #     Notes: Proxy helps managing database connections. See [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-planning.html) for more information.
   is_proxy_included = false
+
+  #     Specify whether or not this instance is publicly accessible.
+  #     Valid Values: .
+  #     Notes:
+  #     - Setting this to true will do the followings:
+  #       - Assign a public IP address and the host name of the DB instance will resolve to the public IP address.
+  #       - Access from within the VPC can be achived by using the private IP address of the assigned Network Interface.
+  is_publicly_accessible = false
 
   #     Specify additional security group rules for the RDS instance.
   #     Valid Values: .
