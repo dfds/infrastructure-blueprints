@@ -11,15 +11,7 @@ jobs:
   Generate-files:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-      - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
-        run: |
-          docker build -t scaffold:latest .
-        shell: bash
-
-      # Get the latest Core module available from the public repo
+    # Get the latest Core module available from the public repo
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
@@ -31,6 +23,14 @@ jobs:
           
           # Cleanup: Remove the temporary clone directory
           rm -rf core-module
+        shell: bash
+        
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: build docker image
+        working-directory: aws-rds/aws-modules-rds/tools
+        run: |
+          docker build -t scaffold:latest .
         shell: bash
         
       # TODO: Download the latest version of the Core module
