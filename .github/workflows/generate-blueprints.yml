@@ -15,8 +15,7 @@ jobs:
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
-          output=$(pwd)/aws-rds/basic/
-          core_module_repo="https://github.com/dfds/terraform-aws-rds.git"
+          core_module_repo="git@github.com:dfds/terraform-aws-rds.git"
 
           git clone $core_module_repo core-module
           cp -r core-module/aws-modules-rds $input
@@ -24,7 +23,7 @@ jobs:
           # Cleanup: Remove the temporary clone directory
           rm -rf core-module
         shell: bash
-        
+
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
