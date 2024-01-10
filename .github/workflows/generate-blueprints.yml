@@ -19,19 +19,30 @@ jobs:
           docker build -t scaffold:latest .
         shell: bash
 
-      # TODO: Download the latest version of the Core module from the public repository
+      # Get the latest Core module available from the public repo
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
           output=$(pwd)/aws-rds/basic/
           core_module_repo="https://github.com/dfds/terraform-aws-rds.git"
-          
-          # Clone the repository and copy the Core module to the input directory
+
           git clone $core_module_repo core-module
           cp -r core-module/aws-modules-rds $input
           
           # Cleanup: Remove the temporary clone directory
           rm -rf core-module
+        shell: bash
+        
+      # TODO: Download the latest version of the Core module
+      - name: Run script
+        run: |
+          input=$(pwd)/aws-rds/aws-modules-rds/
+          output=$(pwd)/aws-rds/basic/
+          if [ -d $output ]; then
+              rm -rf $output
+          fi
+          mkdir -p $output
+          docker run -v $input:/input -v $output:/output scaffold:latest
         shell: bash
 
       - name: setup git config
