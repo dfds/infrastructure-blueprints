@@ -14,9 +14,9 @@ jobs:
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
-          core_module_repo="git@github.com:dfds/terraform-aws-rds.git"
+          core_module_repo=dfds/terraform-aws-rds
 
-          git clone $core_module_repo core-module
+          gh repo clone $core_module_repo core-module
           cp -r core-module/aws-modules-rds $input
           rm -rf core-module
         shell: bash
