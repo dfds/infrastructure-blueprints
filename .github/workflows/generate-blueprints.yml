@@ -14,7 +14,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: aws-rds/blueprints/aws-modules-rds/tools
+        working-directory: aws-rds/aws-modules-rds/tools
         run: |
           docker build -t scaffold:latest .
         shell: bash
@@ -22,13 +22,13 @@ jobs:
       # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
-          input=$(pwd)/aws-rds/blueprints/aws-modules-rds/
-          output=$(pwd)/auto-generated/
+          input=$(pwd)/aws-rds/aws-modules-rds/
+          output=$(pwd)/aws-rds/basic/
+          if [ -d $output ]; then
+              rm -rf $output
+          fi
           mkdir -p $output
           docker run -v $input:/input -v $output:/output scaffold:latest
-          dest=$(pwd)/aws-rds/blueprints/basic/
-          mkdir -p $dest
-          cp -a $output. $dest
         shell: bash
 
       - name: setup git config
@@ -41,6 +41,6 @@ jobs:
         run: |
           git status
           # Stage the file, commit and push
-          git add $(pwd)/aws-rds/blueprints/basic/
+          git add $(pwd)/aws-rds/basic/
           git commit -m "update blueprints for RDS module"
           git push
