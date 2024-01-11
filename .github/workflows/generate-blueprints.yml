@@ -17,9 +17,9 @@ jobs:
           core_module_url="https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz"
           mkdir -p $input
 
-          curl -sL $core_module_url | tar -xz -C $input
+          curl -sL $core_module_url | tar -xz -C $input | mv $input/terraform-aws-rds-0.14.1 $input/terraform-aws-rds
           ls -al $input
-          
+
         shell: bash
 
       - name: Checkout source code
@@ -33,7 +33,7 @@ jobs:
       # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
-          input=$(pwd)/aws-rds/aws-modules-rds/
+          input=$(pwd)/aws-rds/terraform-aws-rds/
           output=$(pwd)/aws-rds/basic/
           if [ -d $output ]; then
               rm -rf $output
