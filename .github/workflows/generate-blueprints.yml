@@ -14,11 +14,11 @@ jobs:
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
-          core_module_repo=dfds/terraform-aws-rds
+          core_module_url="https://raw.githubusercontent.com/dfds/terraform-aws-rds/main/aws-modules-rds.tar.gz"
+          mkdir -p $input
 
-          gh repo clone $core_module_repo core-module
-          cp -r core-module/aws-modules-rds $input
-          rm -rf core-module
+          curl -sL $core_module_url | tar -xz -C $input
+          
         shell: bash
 
       - name: Checkout source code
