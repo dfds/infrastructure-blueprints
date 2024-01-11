@@ -18,7 +18,8 @@ jobs:
           mkdir -p $input
 
           curl -sL $core_module_url | tar -xz -C $input
-
+          ls -al $input
+          
         shell: bash
 
       - name: Checkout source code
