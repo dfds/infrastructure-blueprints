@@ -16,7 +16,7 @@ jobs:
           input=$(pwd)/aws-rds/
           core_module_url="https://github.com/dfds/terraform-aws-rds/releases/latest"
 
-          curl -sL $core_module_url | tar -xz -C $input
+          curl -sL $core_module_url
           ls -al $input
 
         shell: bash
