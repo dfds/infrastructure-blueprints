@@ -13,9 +13,8 @@ jobs:
     steps:
       - name: Download Core module
         run: |
-          input=$(pwd)/aws-rds/
+          input=$(pwd)/aws-rds
           core_module_url="https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz"
-          mkdir -p $input
 
           curl -sL $core_module_url | tar -xz -C $input | mv $input/terraform-aws-rds-0.14.1 $input/terraform-aws-rds
           ls -al $input
