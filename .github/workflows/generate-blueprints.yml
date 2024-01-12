@@ -23,8 +23,7 @@ jobs:
 
         shell: bash
 
-      - name: Checkout source code
-        uses: actions/checkout@v4
+
       - name: build docker image
         working-directory: aws-modules-rds/tools
         run: |
