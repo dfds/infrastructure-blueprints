@@ -14,7 +14,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
+        working-directory: aws-rds/
         run: |
           docker build -t scaffold:latest .
         shell: bash
