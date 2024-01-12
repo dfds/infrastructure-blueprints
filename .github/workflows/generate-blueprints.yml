@@ -11,6 +11,15 @@ jobs:
   Generate-files:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: build docker image
+        working-directory: aws-rds/aws-modules-rds/tools
+        run: |
+          docker build -t scaffold:latest .
+        shell: bash
+        
+      # TODO: Download the latest version of the Core module
       - name: Download Core module
         run: |
           input=$(pwd)/aws-rds/
@@ -21,15 +30,6 @@ jobs:
 
         shell: bash
 
-      - name: Checkout source code
-        uses: actions/checkout@v4
-      - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
-        run: |
-          docker build -t scaffold:latest .
-        shell: bash
-        
-      # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
           input=$(pwd)/aws-rds/terraform-aws-rds/
