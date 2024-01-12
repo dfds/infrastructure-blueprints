@@ -28,8 +28,8 @@ jobs:
       - name: build docker image
         working-directory: aws-rds/terraform-aws-rds/tools
         run: |
-          cd aws-rds/terraform-aws-rds/tools
-          ls -al
+          pwd
+          ls -al *
           docker build -t scaffold:latest .
         shell: bash
         
