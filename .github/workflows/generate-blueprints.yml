@@ -26,7 +26,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: aws-rds/terraform-aws-rds/tools
+        working-directory: infrastructure-blueprints/aws-rds/terraform-aws-rds/tools
         run: |
           pwd
           ls -al *
