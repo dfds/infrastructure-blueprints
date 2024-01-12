@@ -26,9 +26,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: $(pwd)/aws-rds/terraform-aws-rds/tools
+        working-directory: terraform-aws-rds/tools
         run: |
-          ls -al $(pwd)
           docker build -t scaffold:latest .
         shell: bash
         
