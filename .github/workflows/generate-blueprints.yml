@@ -18,22 +18,22 @@ jobs:
           input=$(pwd)/aws-rds/
           cd $input
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
-          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 terraform-aws-rds ; rm -rf terraform-aws-rds.tar.gz
-          ls -al terraform-aws-rds/
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
+          ls -al aws-modules-rds/
 
         shell: bash
 
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: build docker image
-        working-directory: terraform-aws-rds/tools
+        working-directory: aws-rds/aws-modules-rds/tools
         run: |
           docker build -t scaffold:latest .
         shell: bash
         
       - name: Run script
         run: |
-          input=$(pwd)/aws-rds/terraform-aws-rds/
+          input=$(pwd)/aws-rds/aws-modules-rds/
           output=$(pwd)/aws-rds/basic/
           if [ -d $output ]; then
               rm -rf $output
