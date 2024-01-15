@@ -22,7 +22,6 @@ jobs:
       - name: build docker image
         working-directory: aws-rds/aws-modules-rds/tools
         run: |
-          printenv
           docker build -t scaffold:latest .
         shell: bash
 
