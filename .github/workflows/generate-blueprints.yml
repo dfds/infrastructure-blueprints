@@ -17,7 +17,7 @@ jobs:
           path: aws-rds/aws-modules-rds/tools
       - name: Download latest Core module
         run: |
-          print env
+          print $env
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
           tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; mv -rf aws-modules-rds ./aws-rds/ ; rm -rf terraform-aws-rds.tar.gz
           ls -al ./aws-rds/aws-modules-rds/
@@ -26,7 +26,7 @@ jobs:
       - name: build docker image
         working-directory: aws-rds/aws-modules-rds/tools
         run: |
-          print env
+          print $env
           docker build -t scaffold:latest .
         shell: bash
 
