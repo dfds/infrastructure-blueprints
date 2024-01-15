@@ -13,13 +13,18 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+      - name: Download latest Core module
+        run: |
+          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 $GITHUB_WORKSPACE/aws-rds/aws-modules-rds ; ls -al $GITHUB_WORKSPACE/aws-rds/aws-modules-rds/*
+        shell: bash
+
       - name: build docker image
         working-directory: aws-rds/aws-modules-rds/tools
         run: |
           docker build -t scaffold:latest .
         shell: bash
 
-      # TODO: Download the latest version of the Core module
       - name: Run script
         run: |
           input=$(pwd)/aws-rds/aws-modules-rds/
