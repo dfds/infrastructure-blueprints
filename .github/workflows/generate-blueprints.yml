@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # TODO: Download the latest version of the Core module
-      - name: Download Core module
+      
+      - name: build docker image
+        working-directory: aws-rds/aws-modules-rds/tools
         run: |
           mkdir -p $(pwd)/aws-rds
           input=$(pwd)/aws-rds/
@@ -21,12 +23,7 @@ jobs:
           tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
           ls -al aws-modules-rds/
 
-        shell: bash
-
-      - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
-        run: |
-          docker build -t scaffold:latest /home/runner/work/infrastructure-blueprints/aws-rds/aws-modules-rds/tools/
+          docker build -t scaffold:latest .
         shell: bash
         
       - name: Run script
