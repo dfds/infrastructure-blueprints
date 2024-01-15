@@ -25,7 +25,7 @@ jobs:
         shell: bash
 
       - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
+        working-directory: ./aws-rds/aws-modules-rds/tools
         run: |
           print $env
           docker build -t scaffold:latest .
