@@ -12,9 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        with:
+          path: aws-rds/aws-modules-rds/tools
       - name: Download latest Core module
         run: |
+          ls -al .
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
           tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
           ls -al .
