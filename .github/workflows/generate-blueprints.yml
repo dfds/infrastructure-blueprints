@@ -24,8 +24,10 @@ jobs:
         shell: bash
 
       - name: build docker image
+        working-directory: aws-rds/aws-modules-rds/tools
         run: |
-          docker build -t scaffold:latest .
+          sh -c "ls -la $(pwd)/aws-rds/aws-modules-rds/tools"
+          docker build -t scaffold:latest /home/runner/work/infrastructure-blueprints/aws-rds/aws-modules-rds/tools/
         shell: bash
         
       - name: Run script
