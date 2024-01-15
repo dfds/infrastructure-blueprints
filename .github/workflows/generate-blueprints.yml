@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+      - name: Create directory first
+        run: |
+          mkdir -p aws-rds/aws-modules-rds/tools
+        shell: bash
+
       - name: build docker image
         working-directory: aws-rds/aws-modules-rds/tools
         run: |
