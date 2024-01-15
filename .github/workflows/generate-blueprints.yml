@@ -25,7 +25,7 @@ jobs:
 
       - name: build docker image
         run: |
-          docker build -t scaffold:latest ../.
+          docker build -t scaffold:latest .
         shell: bash
         
       - name: Run script
