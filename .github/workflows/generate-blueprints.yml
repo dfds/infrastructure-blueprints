@@ -19,14 +19,16 @@ jobs:
           cd $input
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
           tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
-          ls -al aws-modules-rds/
+          ls -al aws-modules-rds/ | cat $(pwd)
 
         shell: bash
 
-
+      - name: Checkout source code
+        uses: actions/checkout@v4
       - name: build docker image
         working-directory: aws-modules-rds/tools
         run: |
+          sh -c "ls -la aws-rds/terraform-aws-rds/tools"
           docker build -t scaffold:latest .
         shell: bash
         
