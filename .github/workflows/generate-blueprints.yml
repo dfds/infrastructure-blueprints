@@ -13,10 +13,6 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-      - name: Create directory first
-        run: |
-          mkdir -p aws-rds/aws-modules-rds/tools
-        shell: bash
       - name: Download latest Core module
         run: |
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
