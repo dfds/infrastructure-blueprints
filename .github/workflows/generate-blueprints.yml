@@ -24,9 +24,7 @@ jobs:
         shell: bash
 
       - name: build docker image
-        working-directory: aws-rds/aws-modules-rds/tools
         run: |
-          sh -c "ls -la $(pwd)/aws-rds/aws-modules-rds/tools"
           docker build -t scaffold:latest ../.
         shell: bash
         
