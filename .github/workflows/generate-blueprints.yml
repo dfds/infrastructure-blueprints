@@ -16,6 +16,9 @@ jobs:
       - name: build docker image
         working-directory: aws-rds/aws-modules-rds/tools
         run: |
+          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
+          
           docker build -t scaffold:latest .
         shell: bash
 
