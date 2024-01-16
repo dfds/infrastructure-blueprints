@@ -13,13 +13,25 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+
+      - name: Install JQ
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Determine latest Core module tag
+        run: |
+          LATEST_TAG=$(curl -s https://api.github.com/repos/dfds/terraform-aws-rds/tags | jq -r '.[0].name')
+          echo "Latest tag: $LATEST_TAG"
+          echo "TAG_NAME=$LATEST_TAG" >> $GITHUB_ENV
+
       - name: Download latest Core module
         run: |
-          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/0.14.1.tar.gz > terraform-aws-rds.tar.gz
-          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-0.14.1 $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds ; ls -al $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds/*
+          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/${TAG_NAME}.tar.gz > terraform-aws-rds.tar.gz
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-${TAG_NAME} $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds
         shell: bash
 
-      - name: build docker image
+      - name: Build docker image
         working-directory: aws-rds-postgresql/aws-modules-rds/tools
         run: |
           docker build -t scaffold:latest .
