@@ -92,21 +92,21 @@ module "db_instance" {
 
 output "iam_instance_profile_for_ec2" {
   description = "The name of the EC2 instance profile that is using the IAM Role that give AWS services access to the RDS instance and Secrets Manager"
-  value       = try(module.db_instance_example.iam_instance_profile_for_ec2, null)
+  value       = try(module.db_instance.iam_instance_profile_for_ec2, null)
 }
 output "iam_role_arn_for_aws_services" {
   description = "The ARN of the IAM Role that give AWS services access to the RDS instance and Secrets Manager"
-  value       = try(module.db_instance_example.iam_role_arn_for_aws_services, null)
+  value       = try(module.db_instance.iam_role_arn_for_aws_services, null)
 }
 output "instance_engine_info" {
   description = "The engine info for the selected engine of the RDS instance"
-  value       = try(module.db_instance_example.instance_engine_info, null)
+  value       = try(module.db_instance.instance_engine_info, null)
 }
 output "kubernetes_serviceaccount" {
   description = "If you create this Kubernetes ServiceAccount, you will get access to the RDS through IRSA"
-  value       = try(module.db_instance_example.kubernetes_serviceaccount, null)
+  value       = try(module.db_instance.kubernetes_serviceaccount, null)
 }
 output "peering" {
   description = "None"
-  value       = try(module.db_instance_example.peering, null)
+  value       = try(module.db_instance.peering, null)
 }
