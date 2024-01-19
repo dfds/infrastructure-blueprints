@@ -3,11 +3,12 @@ name: Generate aws-rds-postgresql blueprint
 on:
   pull_request:
     types: [opened, synchronize]  # Run on PR creation and updates
+
   push:
     branches: [ "master", "main" ]
-    paths:
-      - "./aws-rds-postgresql/generic/terraform/module.tf"
-
+    paths-ignore:
+      - aws-rds-postgresql/aws-modules-rds/**
+      
 defaults:
   run:
     shell: bash
