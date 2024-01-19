@@ -62,8 +62,7 @@ jobs:
 
       - name: commit
         run: |
-          branch_name=${{ github.ref_name }}
-          [[ $branch_name == *"merge" ]] && branch_name=${branch_name#*/}  # Extract branch from merge ref
+          branch_name=${{ github.ref_name }} [[ $branch_name == *"merge" ]] && branch_name=${branch_name#*/}  # Extract branch from merge ref
           git checkout $branch_name
           git status
           # Stage the file, commit and push
