@@ -1,7 +1,10 @@
-name: Generate blueprints
+name: Generate aws-rds-postgresql blueprint
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]  # Run on PR creation and updates
+  push:
+    branches: ['*']  # Run on all new branches
 
 defaults:
   run:
