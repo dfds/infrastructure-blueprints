@@ -62,6 +62,7 @@ jobs:
 
       - name: commit
         run: |
+          git checkout ${{ github.ref_name }}  # Check out the branch based on the event
           git status
           # Stage the file, commit and push
           git add $(pwd)/aws-rds-postgresql/generic/
