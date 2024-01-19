@@ -4,7 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize]  # Run on PR creation and updates
   push:
-    branches: ['*']  # Run on all new branches
+    branches: [ "master", "main" ]
+    paths:
+      - "./aws-rds-postgresql/generic/terraform/module.tf"
 
 defaults:
   run:
