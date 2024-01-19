@@ -7,7 +7,9 @@ on:
   push:
     branches: [ "master", "main" ]
     paths-ignore:
-      - ./aws-rds-postgresql/aws-modules-rds
+      - "./aws-rds-postgresql/aws-modules-rds"
+      - .gitignore
+      - renovate.json
 
 defaults:
   run:
