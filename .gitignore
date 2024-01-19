@@ -32,3 +32,6 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore the downloaded aws-modules-rds files created for the docker build.
+aws-rds-postgresql/aws-modules-rds/
