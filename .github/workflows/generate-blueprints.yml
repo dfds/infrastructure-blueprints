@@ -33,7 +33,7 @@ jobs:
       - name: Download latest Core module
         run: |
           curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/${TAG_NAME}.tar.gz > terraform-aws-rds.tar.gz
-          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-${TAG_NAME} $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-${TAG_NAME} $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
         shell: bash
 
       - name: Build docker image
