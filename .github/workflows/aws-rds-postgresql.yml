@@ -62,7 +62,9 @@ jobs:
 
       - name: commit
         run: |
-          git checkout ${{ github.ref_name }}  # Check out the branch based on the event
+          branch_name=${{ github.ref_name }}
+          [[ $branch_name == *"merge" ]] && branch_name=${branch_name#*/}  # Extract branch from merge ref
+          git checkout $branch_name
           git status
           # Stage the file, commit and push
           git add $(pwd)/aws-rds-postgresql/generic/
