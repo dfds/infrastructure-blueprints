@@ -2,7 +2,7 @@ name: Generate Blueprint - aws-rds-postgresql
 
 on:
   workflow_dispatch:
-  
+
     paths-ignore:
       - "./aws-rds-postgresql/aws-modules-rds"
       - .gitignore
@@ -31,8 +31,8 @@ jobs:
 
       - name: Download latest Core module
         run: |
-          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/${TAG_NAME}.tar.gz > terraform-aws-rds.tar.gz
-          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-${TAG_NAME} $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
+          curl -L https://github.com/dfds/terraform-aws-rds/archive/refs/tags/${LATEST_TAG}.tar.gz > terraform-aws-rds.tar.gz
+          tar -xf terraform-aws-rds.tar.gz ; mv terraform-aws-rds-${LATEST_TAG} $GITHUB_WORKSPACE/aws-rds-postgresql/aws-modules-rds ; rm -rf terraform-aws-rds.tar.gz
         shell: bash
 
       - name: Build docker image
@@ -55,14 +55,14 @@ jobs:
       - name: Update module source to latest Tag
         run: |
           # Access LATEST_TAG directly from environment variable
-          latest_tag="${{ env.GITHUB_ENV.LATEST_TAG }}"
+          module_tag="${{ env.GITHUB_ENV.LATEST_TAG }}"
 
           # Define the file and line to update
           file="output/terraform/module.tf"
           line_pattern="source\s*=\s*"
 
           # Update the line with SED
-          sed -i "s/${line_pattern}/${line_pattern}${latest_tag}/" "$file"
+          sed -i "s/${line_pattern}/${line_pattern}${module_tag}/" "$file"
 
           # Print the updated line for verification
           cat "$file" | grep "$line_pattern"
