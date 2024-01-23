@@ -39,6 +39,8 @@ jobs:
           echo output
           ls $output
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
+          echo output
+          ls $output
           git status
         shell: bash
 
