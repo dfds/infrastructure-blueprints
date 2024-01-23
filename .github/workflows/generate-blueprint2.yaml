@@ -9,7 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Payload
+      - name: Checkout terraform-aws-rds
+        uses: actions/checkout@v4
+        with:
+          repository: dfds/terraform-aws-rds
+          path: ./modules
+          ref: ${{ github.event.client_payload.release_tag }}
+          token: ${{ secrets.AUTH_TOKEN }}
+      - name: test
         run: |
-          echo ${{ github.event.client_payload.sha }}
-          echo ${{ github.event.client_payload.release_tag }}
+          cd modules && ls
