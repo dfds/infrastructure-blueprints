@@ -42,7 +42,7 @@ jobs:
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
           echo output
           ls $output
-          cd 
+          ls aws-rds-postgresql/generic/terraform
           cat aws-rds-postgresql/generic/terraform/module.tf
           git status
         shell: bash
