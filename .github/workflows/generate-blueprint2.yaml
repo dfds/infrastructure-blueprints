@@ -31,10 +31,10 @@ jobs:
           ls aws-rds-postgresql/
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
           output=$(pwd)/aws-rds-postgresql/generic/
-          if [ -d $output ]; then
-              rm -rf $output
-          fi
-          mkdir -p $output
+#          if [ -d $output ]; then
+#              rm -rf $output
+#          fi
+#          mkdir -p $output
           
           echo output
           ls $output
