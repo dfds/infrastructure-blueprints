@@ -41,6 +41,8 @@ jobs:
         
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
           ls $output/terraform
+          echo $(pwd)
+          echo $input
           echo $output
 
         shell: bash
