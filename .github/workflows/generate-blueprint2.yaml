@@ -1,4 +1,4 @@
-name: Test triggered workflow
+name: Generate blueprints
 
 on:
   repository_dispatch:
@@ -28,7 +28,6 @@ jobs:
 
       - name: Run script
         run: |
-          ls aws-rds-postgresql/
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
           output=$(pwd)/aws-rds-postgresql/generic/
           if [ -d $output ]; then
