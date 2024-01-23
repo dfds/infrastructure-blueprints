@@ -1,0 +1,14 @@
+name: Test triggered workflow
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow]
+
+jobs:
+  generate-blueprint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Payload
+        run: |
+          echo ${{ github.event.client_payload }}
