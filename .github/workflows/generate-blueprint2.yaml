@@ -23,7 +23,7 @@ jobs:
       - name: Build docker image
         working-directory: aws-rds-postgresql/aws-modules-rds/tools
         run: |
-          docker build --build-arg="RELEASE_VERSION=${{ github.event.client_payload.release_tag }}" -t scaffold:latest .
+          docker build -t scaffold:latest .
         shell: bash
 
       - name: Run script
@@ -34,7 +34,7 @@ jobs:
               rm -rf $output
           fi
           mkdir -p $output
-          docker run -v $input:/input -v $output:/output scaffold:latest
+          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
         shell: bash
 
       - name: setup git config

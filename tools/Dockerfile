@@ -33,8 +33,8 @@ RUN export BUILD_ARCHITECTURE=$(uname -m); \
     && mv terraform /usr/local/bin/ \
     && terraform -install-autocomplete
 
-ARG RELEASE_VERSION
-ENV RELEASE=$RELEASE_VERSION
+#ARG RELEASE_VERSION
+#ENV RELEASE=$RELEASE_VERSION
 
 COPY scaffolding/scripts /scripts
 COPY scaffolding/templates /templates
