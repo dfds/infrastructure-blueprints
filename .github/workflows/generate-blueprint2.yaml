@@ -34,6 +34,7 @@ jobs:
               rm -rf $output
           fi
           mkdir -p $output
+          ls -lah aws-rds-postgresql/
           echo input
           ls $input
           echo output
@@ -41,6 +42,7 @@ jobs:
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
           echo output
           ls $output
+          cd 
           git status
         shell: bash
 
