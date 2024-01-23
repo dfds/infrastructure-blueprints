@@ -11,4 +11,5 @@ jobs:
     steps:
       - name: Payload
         run: |
-          echo ${{ github.event.client_payload }}
+          echo ${{ github.event.client_payload.sha }}
+          echo ${{ github.event.client_payload.release_tag }}
