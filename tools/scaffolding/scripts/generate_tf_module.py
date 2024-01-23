@@ -2,6 +2,7 @@
 import json
 from string import Template
 import re
+import os
 
 import argparse
 
@@ -64,9 +65,9 @@ with open(work_folder, "r", encoding='UTF-8') as f:
         output_list.append(Template(OUTPUT_TEMPLATE).substitute(output_sub))
 
 vars_sub = {
+    'release': os.environ['RELEASE'],
     'inputs': '\n'.join(input_list),
-    'outputs': '\n'.join(output_list),
-    'release': os.environ['RELEASE']
+    'outputs': '\n'.join(output_list)
 }
 
 with open(tf_template, 'r', encoding='UTF-8') as f:
