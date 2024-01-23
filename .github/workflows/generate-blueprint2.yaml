@@ -23,7 +23,7 @@ jobs:
       - name: Build docker image
         working-directory: aws-rds-postgresql/aws-modules-rds/tools
         run: |
-          docker build -t scaffold:latest .
+          docker build --build-arg="RELEASE_VERSION=${{ github.event.client_payload.release_tag }}" -t scaffold:latest .
         shell: bash
 
       - name: Run script
