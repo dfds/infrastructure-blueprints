@@ -37,7 +37,7 @@ jobs:
           mkdir -p $output
           
           echo output
-          ls $output/terraform
+          ls $output
         
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
 
