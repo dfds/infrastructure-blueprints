@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.AUTH_TOKEN }}
 
       - name: Build docker image
-        working-directory: aws-rds-postgresql/aws-modules-rds/tools
+        working-directory: ./tools
         run: |
           docker build -t scaffold:latest .
         shell: bash
