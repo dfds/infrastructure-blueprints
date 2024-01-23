@@ -45,6 +45,7 @@ jobs:
           ls aws-rds-postgresql/generic/terraform
           cat aws-rds-postgresql/generic/terraform/module.tf
           git status
+          ls tmp/
         shell: bash
 
       - name: setup git config
