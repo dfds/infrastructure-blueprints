@@ -28,7 +28,7 @@ jobs:
 
       - name: Run script
         run: |
-          ls
+          ls aws-rds-postgres/
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
           output=$(pwd)/aws-rds-postgresql/generic/
           if [ -d $output ]; then
