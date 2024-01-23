@@ -28,24 +28,16 @@ jobs:
 
       - name: Run script
         run: |
+          ls
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
           output=$(pwd)/aws-rds-postgresql/generic/
           if [ -d $output ]; then
               rm -rf $output
           fi
           mkdir -p $output
-          ls -lah aws-rds-postgresql/
-          echo input
-          ls $input
-          echo output
-          ls $output
+        
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
-          echo output
-          ls $output
-          ls aws-rds-postgresql/generic/terraform
-          cat aws-rds-postgresql/generic/terraform/module.tf
-          git status
-          ls tmp/
+
         shell: bash
 
       - name: setup git config
