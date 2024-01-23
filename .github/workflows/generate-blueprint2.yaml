@@ -43,7 +43,7 @@ jobs:
           echo output
           ls $output
           cd 
-          cat aws-rds-postgresql/generic/terraform/main.tf
+          cat aws-rds-postgresql/generic/terraform/module.tf
           git status
         shell: bash
 
