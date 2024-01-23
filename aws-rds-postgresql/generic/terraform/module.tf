@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=0.16.3"
+  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=0.16.12"
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
@@ -76,7 +76,7 @@ module "db_instance" {
 
   #     Provide a list of VPC subnet IDs.
   #     Valid Values: .
-  #     Notes: IDs of the subnets must be in the same VPC as the RDS instance.
+  #     Notes: IDs of the subnets must be in the same VPC as the RDS instance. Example: ["subnet-aaaaaaaaaaa", "subnet-bbbbbbbbbbb", "subnet-cccccccccc"]
   subnet_ids = "example"
 
   #     Specify Username for the master DB user.
@@ -97,10 +97,6 @@ output "iam_instance_profile_for_ec2" {
 output "iam_role_arn_for_aws_services" {
   description = "The ARN of the IAM Role that give AWS services access to the RDS instance and Secrets Manager"
   value       = try(module.db_instance.iam_role_arn_for_aws_services, null)
-}
-output "instance_engine_info" {
-  description = "The engine info for the selected engine of the RDS instance"
-  value       = try(module.db_instance.instance_engine_info, null)
 }
 output "kubernetes_serviceaccount" {
   description = "If you create this Kubernetes ServiceAccount, you will get access to the RDS through IRSA"
