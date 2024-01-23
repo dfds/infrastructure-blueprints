@@ -34,8 +34,9 @@ jobs:
               rm -rf $output
           fi
           mkdir -p $output
-          ls
+          echo input
           ls $input
+          echo output
           ls $output
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
           git status
