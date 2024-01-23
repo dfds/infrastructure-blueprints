@@ -33,8 +33,6 @@ if [ -z "$(ls -a $source_module_path)" ]; then
    exit 1
 fi
 
-touch $tf_output_folders/test
-
 # TODO: CHECK FOR output folder mount
 
 # 1) Generate docs for all modules in a repo
