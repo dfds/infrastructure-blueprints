@@ -26,6 +26,9 @@ docker_script_template="/templates/restore.sh.template"
 docker_script_output="/output/docker/restore.sh"
 docker_output_folders="/output/docker"
 
+# Documentation
+documentation_output="/output/variables.md"
+
 mkdir -p $docker_output_folders
 
 if [ -z "$(ls -a $source_module_path)" ]; then
@@ -48,3 +51,6 @@ terraform fmt $tf_output_folders
 python3 $scripts_path/generate_docker.py --docker-compose-template $docker_compose_template --docker-compose-output $docker_compose_output  --env-template $docker_env_template --env-output $docker_env_output --docker-script-template $docker_script_template --docker-script-output $docker_script_output
 # 4) Generate pipeline files
 # TODO: generate pipeline
+
+# 5) Generate documentation
+terraform-docs markdown --show "inputs" $source_module_path --output-file $documentation_output
