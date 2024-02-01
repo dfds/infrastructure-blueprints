@@ -3,7 +3,7 @@ name: Generate blueprints
 on:
   repository_dispatch:
     types: [trigger-workflow]
-
+  workflow_dispatch:
 jobs:
   generate-blueprint:
     runs-on: ubuntu-latest
