@@ -3,8 +3,16 @@ name: Generate blueprints
 on:
   repository_dispatch:
     types: [trigger-workflow]
+
   workflow_dispatch:
+    inputs:
+      local_release_tag:
+        description: Type in a release tag
+        required: true
+        type: string
+
 jobs:
+  id: generate-blueprint
   generate-blueprint:
     runs-on: ubuntu-latest
 
@@ -27,6 +35,9 @@ jobs:
         shell: bash
 
       - name: Run script
+        env:
+          REMOTE_RELEASE_VERSION: ${{ github.event.client_payload.release_tag }}
+          LOCAL_RELEASE_VERSION: ${{ inputs.local_release_tag }}
         run: |
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
           output=$(pwd)/aws-rds-postgresql/generic/
@@ -34,8 +45,12 @@ jobs:
               rm -rf $output
           fi
           mkdir -p $output
-        
-          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
+
+          if [[ -z ${REMOTE_RELEASE_VERSION+x} ]];
+            docker run -e RELEASE=$LOCAL_RELEASE_VERSION -v $input:/input -v $output:/output scaffold:latest
+          else
+            docker run -e RELEASE=$REMOTE_RELEASE_VERSION -v $input:/input -v $output:/output scaffold:latest
+          fi
 
           sudo chown -R $USER:$USER $output
 
@@ -58,5 +73,3 @@ jobs:
           branch: blueprint-updates
           base: main
           labels: blueprints
-        
-        
