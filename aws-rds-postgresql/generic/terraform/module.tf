@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=0.16.16"
+  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref="
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
@@ -67,6 +67,8 @@ module "db_instance" {
   #     - Setting this to true will do the followings:
   #       - Assign a public IP address and the host name of the DB instance will resolve to the public IP address.
   #       - Access from within the VPC can be achived by using the private IP address of the assigned Network Interface.
+  #       - Create a security group rule to allow inbound traffic from the specified CIDR blocks.
+  #         - It is required to set `public_access_ip_whitelist` to allow access from specific IP addresses.
   is_publicly_accessible = false
 
   #     Specify service availability.
