@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=0.16.16"
+  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=1.0.2"
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
