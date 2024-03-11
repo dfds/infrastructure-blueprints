@@ -17,6 +17,13 @@ tf_module_output="/output/terraform/module.tf"
 tf_output_folders="/output/terraform"
 mkdir -p $tf_output_folders
 
+# TERRAGRUNT
+tg_root_template="/templates/terragrunt-root.hcl.template"
+tg_env_template="/templates/env.hcl.template"
+tg_local_template="/templates/terragrunt.hcl.template"
+tg_output_folders="/output/terragrunt"
+mkdir -p $tg_output_folders/test/database
+
 # DOCKER
 docker_compose_template="/templates/compose.yml.template"
 docker_compose_output="/output/docker/compose.yml"
@@ -54,3 +61,8 @@ python3 $scripts_path/generate_docker.py --docker-compose-template $docker_compo
 
 # 5) Generate documentation
 terraform-docs markdown --show "inputs" $source_module_path --output-file $documentation_output
+
+# 6) Generate terragrunt files
+python3 $scripts_path/generate_tf_module.py --source-tf-doc $source_json_doc --temp-work-folder $generated_tf_module_data --tf-module-template $tg_local_template --tf-output-path $tg_output_folders/test/database/terragrunt.hcl
+cp $tg_root_template $tg_output_folders/terragrunt.hcl
+cp $tg_env_template $tg_output_folders/test/env.hcl
