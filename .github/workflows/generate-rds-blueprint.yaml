@@ -1,8 +1,8 @@
-name: Generate blueprints
+name: Generate blueprints for RDS
 
 on:
   repository_dispatch:
-    types: [trigger-workflow]
+    types: [trigger-rds-workflow]
   workflow_dispatch:
 jobs:
   generate-blueprint:
@@ -34,7 +34,7 @@ jobs:
               rm -rf $output
           fi
           mkdir -p $output
-        
+
           docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
 
           sudo chown -R $USER:$USER $output
@@ -43,7 +43,7 @@ jobs:
 
       - name: setup git config
         run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          # setup the username and email.
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
@@ -58,5 +58,3 @@ jobs:
           branch: blueprint-updates
           base: main
           labels: blueprints
-        
-        
