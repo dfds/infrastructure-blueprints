@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/dfds/terraform-aws-rds.git//?ref=1.2.1"
+  source = "git::https://github.com/dfds/terraform-aws-rds.git//?ref=1.3.1"
 }
 
 # Include all settings from the parent terragrunt.hcl file
