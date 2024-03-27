@@ -28,7 +28,7 @@ Generate blueprint for terraform-aws-rds:
 
 ```bash
 cd ../..
-docker run -e RELEASE=<release-number> -e APP_NAME=database -v $PWD/terraform-aws-rds/:/module \
+docker run -e RELEASE=<PLACEHOLDER> -e APP_NAME=database -v $PWD/terraform-aws-rds/:/module \
     -v $PWD/infrastructure-blueprints/tools/scaffolding/templates/aws-rds-postgresql/:/templates \
     -v $PWD/infrastructure-blueprints/tools/auto-generated/:/output scaffold:latest
 ```
@@ -36,7 +36,7 @@ docker run -e RELEASE=<release-number> -e APP_NAME=database -v $PWD/terraform-aw
 Generate blueprint for terraform-ssm-agent:
 
 ```bash
-docker run -e RELEASE=<release-number> -e APP_NAME=ssm-agent -v $PWD/terraform-aws-ssm-agent/:/module \
+docker run -e RELEASE=<PLACEHOLDER> -e APP_NAME=ssm-agent -v $PWD/terraform-aws-ssm-agent/:/module \
     -v $PWD/infrastructure-blueprints/tools/scaffolding/templates/aws-ssm-agent/:/templates \
     -v $PWD/infrastructure-blueprints/tools/auto-generated/:/output scaffold:latest
 ```
