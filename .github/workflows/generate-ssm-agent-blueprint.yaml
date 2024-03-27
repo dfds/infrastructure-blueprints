@@ -29,13 +29,16 @@ jobs:
       - name: Run script
         run: |
           input=$(pwd)/aws-ssm-agent/aws-modules-ssm-agent/
+          templates=$(pwd)/tools/scaffolding/templates/aws-ssm-agent/
           output=$(pwd)/aws-ssm-agent/generic/
           if [ -d $output ]; then
               rm -rf $output
           fi
           mkdir -p $output
 
-          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
+          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -e APP_NAME=ssm-agent -v $input:/module \
+                        -v $templates/:/templates \
+                        -v $output:/output scaffold:latest
 
           sudo chown -R $USER:$USER $output
 
