@@ -36,6 +36,8 @@ terraform.rc
 # Ignore some files that are a bit of a leftover.
 aws-rds-postgresql/aws-modules-rds/
 terraform-aws-rds.tar.gz
+aws-ssm-agent/aws-modules-ssm-agent/
+terraform-aws-ssm-agent.tar.gz
 
 # Auto-generated files
 auto-generated
