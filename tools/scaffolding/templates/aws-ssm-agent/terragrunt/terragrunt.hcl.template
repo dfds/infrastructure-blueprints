@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/dfds/terraform-ssm-agent.git//?ref=$release"
+  source = "git::https://github.com/dfds/terraform-aws-ssm-agent//?ref=$release"
 }
 
 # Include all settings from the parent terragrunt.hcl file

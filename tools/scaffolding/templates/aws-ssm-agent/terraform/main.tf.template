@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-ssm-agent.git?ref=$release"
+  source = "git::https://github.com/dfds/terraform-aws-ssm-agent?ref=$release"
 $inputs
 }
 
