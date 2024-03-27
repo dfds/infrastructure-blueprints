@@ -29,13 +29,16 @@ jobs:
       - name: Run script
         run: |
           input=$(pwd)/aws-rds-postgresql/aws-modules-rds/
+          templates=$(pwd)/tools/scaffolding/templates/aws-rds-postgresql/
           output=$(pwd)/aws-rds-postgresql/generic/
           if [ -d $output ]; then
               rm -rf $output
           fi
           mkdir -p $output
 
-          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -v $input:/input -v $output:/output scaffold:latest
+          docker run -e RELEASE=${{ github.event.client_payload.release_tag }} -e APP_NAME=database -v $input:/module \
+              -v $templates/:/templates \
+              -v $output:/output scaffold:latest
 
           sudo chown -R $USER:$USER $output
 
