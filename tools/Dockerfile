@@ -33,8 +33,22 @@ RUN export BUILD_ARCHITECTURE=$(uname -m); \
     && mv terraform /usr/local/bin/ \
     && terraform -install-autocomplete
 
-#ARG RELEASE_VERSION
-#ENV RELEASE=$RELEASE_VERSION
+# ========================================
+# TERRAGRUNT
+# ========================================
+
+ENV TERRAGRUNT_VERSION=0.45.16
+
+RUN export BUILD_ARCHITECTURE=$(uname -m); \
+    if [ "$BUILD_ARCHITECTURE" = "x86_64" ]; then export BUILD_ARCHITECTURE_ARCH=amd64; fi; \
+    if [ "$BUILD_ARCHITECTURE" = "aarch64" ]; then export BUILD_ARCHITECTURE_ARCH=arm64; fi; \
+    curl -Ls https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_${BUILD_ARCHITECTURE_ARCH} -o terragrunt \
+    && chmod +x terragrunt \
+    && mv terragrunt /usr/local/bin/
+
+# ========================================
+# Copy files
+# ========================================
 
 COPY scaffolding/scripts /scripts
 COPY scaffolding/templates /templates
