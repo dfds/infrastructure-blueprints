@@ -51,7 +51,7 @@ jobs:
           git config user.email "<>"
 
       - name: Create a pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Github Actions update blueprints for RDS module"
