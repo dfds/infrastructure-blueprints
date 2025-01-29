@@ -4,7 +4,7 @@ terraform {
 
 # Include all settings from the parent terragrunt.hcl file
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 # Include env.hcl for environment specific settings
