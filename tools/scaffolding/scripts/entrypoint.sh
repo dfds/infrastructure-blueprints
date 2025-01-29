@@ -2,16 +2,14 @@ scripts_path="/scripts"
 source_module_path="/module"
 
 if [ ! -d "/output" ]; then
-   echo "output folder does not exist"
-   exit 1
+	echo "output folder does not exist"
+	exit 1
 fi
 
-
-if [ ! -z "$APP_NAME" ]
-then
-      app_name="$APP_NAME"
+if [ ! -z "$APP_NAME" ]; then
+	app_name="$APP_NAME"
 else
-      app_name="myapp"
+	app_name="myapp"
 fi
 
 # TERRAFORM DOCS
@@ -24,7 +22,6 @@ tf_module_template_folder="/templates/terraform/"
 tf_module_template="templates/terraform/main.tf.template"
 tf_module_output="/output/terraform/module.tf"
 tf_output_folders="/output/terraform"
-
 
 # TERRAGRUNT
 tg_module_template_folder="/templates/terragrunt/"
@@ -49,8 +46,8 @@ docker_output_folders="/output/docker"
 documentation_output="/output/variables.md"
 
 if [ -z "$(ls -a $source_module_path)" ]; then
-   echo "empty $source_module_path"
-   exit 1
+	echo "empty $source_module_path"
+	exit 1
 fi
 
 # 1) Generate docs for all modules in a repo
@@ -58,20 +55,20 @@ terraform-docs json --show "all" $source_module_path --output-file $output_json_
 
 # 2) Generate TF files if template is provided
 if [ -d $tf_module_template_folder ]; then
-   mkdir -p $tf_output_folders
-   python3 $scripts_path/generate_tf_module.py --source-tf-doc $source_json_doc --temp-work-folder $generated_tf_module_data --tf-module-template $tf_module_template --tf-output-path $tf_module_output
-  # 3) Format TF files
-   terraform fmt $tf_output_folders
+	mkdir -p $tf_output_folders
+	python3 $scripts_path/generate_tf_module.py --source-tf-doc $source_json_doc --temp-work-folder $generated_tf_module_data --tf-module-template $tf_module_template --tf-output-path $tf_module_output
+	# 3) Format TF files
+	terraform fmt $tf_output_folders
 else
-  echo "No terraform module template provided"
+	echo "No terraform module template provided"
 fi
 
 # 4) Generate Docker files
 if [ -d $docker_template_folder ]; then
-   mkdir -p $docker_output_folders
-   python3 $scripts_path/generate_docker.py --docker-compose-template $docker_compose_template --docker-compose-output $docker_compose_output  --env-template $docker_env_template --env-output $docker_env_output --docker-script-template $docker_script_template --docker-script-output $docker_script_output
+	mkdir -p $docker_output_folders
+	python3 $scripts_path/generate_docker.py --docker-compose-template $docker_compose_template --docker-compose-output $docker_compose_output --env-template $docker_env_template --env-output $docker_env_output --docker-script-template $docker_script_template --docker-script-output $docker_script_output
 else
-   echo "No Docker template provided"
+	echo "No Docker template provided"
 fi
 
 # 5) Generate documentation
@@ -79,14 +76,14 @@ terraform-docs markdown --show "inputs" $source_module_path --output-file $docum
 
 # # 6) Generate terragrunt files
 if [ -d $tg_module_template_folder ]; then
-   mkdir -p $tg_output_folders_test/$app_name
-   python3 $scripts_path/generate_tf_module.py --source-tf-doc $source_json_doc --temp-work-folder $generated_tf_module_data --tf-module-template $tg_local_template --tf-output-path $tg_output
-   cp $tg_root_template $tg_output_folders/terragrunt.hcl
-   cp $tg_env_template $tg_output_folders_test/env.hcl
+	mkdir -p $tg_output_folders_test/$app_name
+	python3 $scripts_path/generate_tf_module.py --source-tf-doc $source_json_doc --temp-work-folder $generated_tf_module_data --tf-module-template $tg_local_template --tf-output-path $tg_output
+	cp $tg_root_template $tg_output_folders/root.hcl
+	cp $tg_env_template $tg_output_folders_test/env.hcl
 
-   terragrunt hclfmt --terragrunt-working-dir $tg_output_folders
+	terragrunt hclfmt --terragrunt-working-dir $tg_output_folders
 else
-  echo "No terragrunt module template provided"
+	echo "No terragrunt module template provided"
 fi
 
 # # TODO: generate pipeline
