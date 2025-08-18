@@ -81,7 +81,7 @@ if [ -d $tg_module_template_folder ]; then
 	cp $tg_root_template $tg_output_folders/root.hcl
 	cp $tg_env_template $tg_output_folders_test/env.hcl
 
-	terragrunt hclfmt --terragrunt-working-dir $tg_output_folders
+	terragrunt hclfmt --working-dir $tg_output_folders
 else
 	echo "No terragrunt module template provided"
 fi
