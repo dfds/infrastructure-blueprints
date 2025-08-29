@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref=2.2.1"
+  source = "git::https://github.com/dfds/terraform-aws-rds.git?ref="
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
@@ -78,7 +78,12 @@ module "db_instance" {
 
   #     Provide a list of VPC subnet IDs.
   #     Valid Values: .
-  #     Notes: IDs of the subnets must be in the same VPC as the RDS instance. Example: ["subnet-aaaaaaaaaaa", "subnet-bbbbbbbbbbb", "subnet-cccccccccc"]
+  #     Notes:
+  #     - IDs of the subnets must be in the same VPC as the RDS instance. Example: ["subnet-aaaaaaaaaaa", "subnet-bbbbbbbbbbb", "subnet-cccccccccc"]
+  #     - For Subnet IDs, use the following:
+  #       - Use Private Subnets for private databases
+  #       - Use Public Subnets for public databases. This options should be used when setting is_kubernetes_app_enabled to true.
+  #       See guide [here](https://wiki.dfds.cloud/en/playbooks/blueprints/infrastructure/aws-rds-postgresql#h-5-guide-on-variable-configurations) for information on how to fetch them.
   subnet_ids = "example"
 
   #     Specify Username for the master DB user.
