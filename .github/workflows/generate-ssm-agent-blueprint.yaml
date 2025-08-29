@@ -18,7 +18,7 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_GITHUB_TOKEN }}
-          AUTH_TOKEN: op://CloudEng-General/Github account devex-sa/Tokens/access-blueprints-repo
+          AUTH_TOKEN: op://CloudEng-General/Github account devex-sa/Tokens/infrastructure-blueprints-pull-repo
 
       - name: Checkout terraform-aws-ssm-agent
         uses: actions/checkout@v5
