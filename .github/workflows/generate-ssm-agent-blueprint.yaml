@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Load credentials from 1Password
         uses: 1password/load-secrets-action@v3
@@ -21,7 +21,7 @@ jobs:
           AUTH_TOKEN: op://CloudEng-General/Github account devex-sa/Tokens/infrastructure-blueprints-pull-repo
 
       - name: Checkout terraform-aws-ssm-agent
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: dfds/terraform-aws-ssm-agent
           path: ./aws-ssm-agent/aws-modules-ssm-agent
