@@ -15,7 +15,7 @@ provider "aws" {
 
 
 module "db_instance" {
-  source = "git::https://github.com/dfds/terraform-aws-ssm-agent?ref=1.2.0"
+  source = "git::https://github.com/dfds/terraform-aws-ssm-agent?ref=2.0.0"
 
   #     Provide a cost centre for the resource.
   #     Valid Values: .
