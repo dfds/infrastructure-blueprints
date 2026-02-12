@@ -5,7 +5,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    image: postgres:18.1
+    image: postgres:18.2
     container_name: import-data
     volumes:
       - ./postgres/export:/export
@@ -17,7 +17,7 @@ services:
     depends_on:
       export-data:
         condition: service_completed_successfully
-    image: postgres:18.1
+    image: postgres:18.2
     restart: always
     container_name: dev-db
     ports:
